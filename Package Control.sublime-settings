@@ -1,0 +1,37 @@
+{
+	"in_process_packages":
+	[
+	],
+	"installed_packages":
+	[
+		"AdvancedNewFile",
+		"All Autocomplete",
+		"Color Highlighter",
+		"ColorPicker",
+		"CSS Snippets",
+		"Djaneiro",
+		"DocBlockr",
+		"FileDiffs",
+		"Git",
+		"GitGutter",
+		"LESS",
+		"Markdown Preview",
+		"MarkdownEditing",
+		"Origami",
+		"Package Control",
+		"Powershell Help Generator",
+		"Sass",
+		"Scratchpad",
+		"SideBarEnhancements",
+		"SublimeLinter",
+		"SublimeLinter-flake8",
+		"SublimeLinter-jshint",
+		"SublimeREPL",
+		"Theme - Spacegray",
+		"TodoReview"
+	],
+	"repositories":
+	[
+		"https://github.com/SublimeHaskell/SublimeHaskell/tree/hsdev"
+	]
+}
