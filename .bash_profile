@@ -1,7 +1,3 @@
-# .bashrc
-
-# User specific aliases and functions
-
 # if not an interactive session exit this 
 [ -z "$PS1" ] && return
 
@@ -53,6 +49,8 @@ alias cd="venv_cd"
 alias ls='ls -G'
 alias l='ls -lha'
 alias ..='cd ../'
+# pretty grep
+alias grep="grep --colour=auto"
 #  SSH aliases
 alias sshbit='ssh samlr@samlr.com'
 # Pretty LS
@@ -71,9 +69,6 @@ alias ggraph='git log --graph --oneline --decorate --all'
 alias gpush='git push'
 alias gpull='git pull'
 
-# pretty grep
-alias grep="grep --colour=auto"
-
 # Alias ipython to jump into its env first
 alias ipython=". ~/.virtualenvs/ipythonEnv/bin/activate && ipython"
 
@@ -91,9 +86,6 @@ export PATH=$PATH:/Library/PostgreSQL/9.3/bin
 # Make sure that editors are correctly set up & have a correct path for ports
 export EDITOR=vim
 export PAGER=less
-
-# unset the library path as this is handled elsewhere
-unset DYLD_LIBRARY_PATH
 
 # Call this once everything's loaded!
 proml
