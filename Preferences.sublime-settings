@@ -2,14 +2,15 @@
 	"animation_enabled": false,
 	"color_scheme": "Packages/User/SublimeLinter/base16-ocean.dark (SL).tmTheme",
 	"dictionary": "Packages/Language - English/en_GB.dic",
-	"font-face": "Source Sans Pro",
+	"font_face": "Hack",
+	"font_size": 10,
 	"highlight_line": true,
 	"ignored_packages":
 	[
 		"Markdown",
 		"Vintage"
 	],
-	"rules":
+	"rulers":
 	[
 		80
 	],
