@@ -56,6 +56,14 @@ alias sshbit='ssh samlr@samlr.com'
 # Pretty LS
 export LS_COLORS="di=36;40:ln=35;40:so=32;40:pi=33;40:ex=31;40:bd=34;46:cd=34;43:su=0;41:sg=0;46:tw=0;42:ow=0;43:"
 
+# Funky git completion stuff
+git_complete_script=~/.git-completion.sh
+if [ -e $git_complete_script ]; then
+  . $git_complete_script
+else
+  echo "$git_complete_script missing."
+fi
+
 # Git aliases
 alias ga='git add'
 alias gs='git status'
@@ -93,3 +101,4 @@ proml
 # Call check_virtualenv in case opening directly into a directory (e.g
 # when opening a new tab in Terminal.app). Call this once everything's loaded!
 check_virtualenv
+
