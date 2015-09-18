@@ -7,8 +7,9 @@
 	"highlight_line": true,
 	"ignored_packages":
 	[
+		"Markdown",
 		"Vintage",
-		"Markdown"
+		"BetterFindBuffer"
 	],
 	"rulers":
 	[
