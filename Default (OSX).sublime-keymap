@@ -4,6 +4,8 @@
             "overlay": "command_palette",
             "text":"git"
         } },
-     { "keys": ["ctrl+shift+space"], "command": "scratchpad" },
-     { "keys": ["ctrl+space"], "command": "auto_complete" },
+    { "keys": ["ctrl+shift+space"], "command": "scratchpad" },
+    { "keys": ["ctrl+space"], "command": "auto_complete" },
+    { "keys": ["f3"], "command": "find_next" },
+    { "keys": ["shift+f3"], "command": "find_prev" },
 ]
