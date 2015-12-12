@@ -2,12 +2,13 @@
 [ -z "$PS1" ] && return
 
 function parse_git_dirty {
-  [[ $(git status 2> /dev/null | tail -n1) != "nothing to commit, working directory clean" ]] && echo "*"
+  status=$(git status 2> /dev/null | tail -n1)
+  [[ $status ]] && [[ $status != "nothing to commit, working directory clean" ]] && echo "*"
 }
 
 # two fancy functions to display the current git branch in the prompt
 function parse_git_branch {
-  git branch --no-color 2> /dev/null | sed -e '/^[^*]/d' -e 's/* \(.*\)/\1/'
+  git branch --no-color 2> /dev/null | sed -e '/^[^*]/d' -e 's/* \(.*\)/(\1)/'
 }
 
 function proml {
@@ -19,7 +20,7 @@ function proml {
   local       WHITE="\[\033[1;37m\]"
   local  LIGHT_GRAY="\[\033[0;37m\]"
 
-PS1="$WHITE[$RED\$(date +%H:%M)$WHITE][$RED\u@\h:\W$GREEN\$(parse_git_dirty)(\$(parse_git_branch))$WHITE]$GREEN\$ "
+PS1="$WHITE[$RED\$(date +%H:%M)$WHITE][$RED\u@\h:\W$GREEN\$(parse_git_dirty)\$(parse_git_branch)$WHITE]$GREEN\$ "
 PS2='> '
 PS4='+ '
 }
