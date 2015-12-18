@@ -81,6 +81,7 @@ alias gt='git tag'
 alias ggraph='git log --graph --oneline --decorate --all'
 alias gpush='git push'
 alias gpull='git pull'
+alias gll='git log --oneline -n 5'
 
 # Alias ipython to jump into its env first
 alias ipython=". ~/.virtualenvs/ipythonEnv/bin/activate && ipython"
