@@ -83,8 +83,9 @@ alias gpush='git push'
 alias gpull='git pull'
 alias gll='git log --oneline -n 5'
 
-# Alias ipython to jump into its env first
-alias ipython=". ~/.virtualenvs/ipythonEnv/bin/activate && ipython"
+# Default to using python
+alias python='python3'
+alias pip='echo You probably want to be in an env if not use "pip3"'
 
 # Voodoo to set up virtual env for python and misc magic
 # where to save them...
