@@ -20,46 +20,6 @@ source $ZSH/oh-my-zsh.sh
 # Preferred editor for local and remote sessions
 export EDITOR='vim'
 
-# Set personal aliases, overriding those provided by oh-my-zsh libs,
-# plugins, and themes. Aliases can be placed here, though oh-my-zsh
-# users are encouraged to define aliases within the ZSH_CUSTOM folder.
-# For a full list of active aliases, run `alias`.
-#
-
-# alias junk
-alias ls='ls -G'
-alias l='ls -lha'
-alias ..='cd ../'
-
-# pretty grep
-alias grep="grep --colour=auto"
-
-# Git aliases
-alias ga='git add'
-alias gs='git status'
-alias gca='git commit -a -m' # add all changes (only already added files)
-alias gco='git checkout'
-alias gb='git branch'
-alias gl='git log --pretty=format:"%h %s" -n 5'
-alias gd='git diff'
-alias gt='git tag'
-alias ggraph='git log --graph --oneline --decorate --all'
-alias gpush='git push'
-alias gpull='git pull'
-alias gll='git --no-pager log --oneline -n 5'
-alias gcm='git checkout master'
-alias gcb='git checkout -b'
-
-# Vagrant aliases
-alias vup='vagrant up'
-alias vssh='vagrant ssh'
-alias vpro='vagrant provision'
-alias vdown='vagrant halt'
-alias vlist='vagrant snapshot list'
-alias vsave='vagrant snapshot save'
-alias vdestroy='vagrant destroy'
-alias vrestore='vagrant snapshot restore'
-
 # Add sublime to the path
 export PATH=$PATH:"/Applications/Sublime Text.app/Contents/SharedSupport/bin"
 source /usr/local/bin/virtualenvwrapper_lazy.sh
@@ -67,6 +27,14 @@ source /usr/local/bin/virtualenvwrapper_lazy.sh
 # virtual env
 export WORKON_HOME=~/.virtualenvs
 
-
 # Autoload rbenv
 eval "$(rbenv init -)"
+
+# Import aliases
+source ~/.aliases
+
+# The next line updates PATH for the Google Cloud SDK.
+if [ -f '/Users/samcook/Downloads/google-cloud-sdk/path.zsh.inc' ]; then source '/Users/samcook/Downloads/google-cloud-sdk/path.zsh.inc'; fi
+
+# The next line enables shell command completion for gcloud.
+if [ -f '/Users/samcook/Downloads/google-cloud-sdk/completion.zsh.inc' ]; then source '/Users/samcook/Downloads/google-cloud-sdk/completion.zsh.inc'; fi
