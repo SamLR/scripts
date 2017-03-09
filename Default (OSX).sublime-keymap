@@ -1,5 +1,5 @@
-[ 
-    {"keys": ["super+shift+g"], "command": "show_overlay", "args": 
+[
+    {"keys": ["super+shift+g"], "command": "show_overlay", "args":
         {
             "overlay": "command_palette",
             "text":"git"
@@ -9,4 +9,12 @@
     { "keys": ["f3"], "command": "find_next" },
     { "keys": ["shift+f3"], "command": "find_prev" },
     { "keys": ["ctrl+;"], "command": "show_overlay", "args": {"overlay": "goto", "text": "#"} },
+    {
+        "keys": ["super+shift+f5", "super+shift+f5"],
+        "command": "insert_date",
+        "args": {
+            "format": "%Y-%m-%d %H:%M (UTC)",
+            "tz_out": "UTC"
+        }
+    },
 ]

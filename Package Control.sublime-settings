@@ -5,6 +5,7 @@
 	],
 	"installed_packages":
 	[
+		"Advanced CSV",
 		"AdvancedNewFile",
 		"All Autocomplete",
 		"BetterFindBuffer",
@@ -17,6 +18,7 @@
 		"FileDiffs",
 		"Git",
 		"GitGutter",
+		"InsertDate",
 		"JSON Reindent",
 		"LESS",
 		"Logstash Syntax Highlighting",
