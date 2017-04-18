@@ -16,7 +16,7 @@ alias grep="grep --colour=auto"
 # Git aliases
 alias ga='git add'
 alias gs='git status'
-alias gca='git commit -a -m' # add all changes (only already added files)
+alias gc='git commit -v' # add all changes (only already added files)
 alias gco='git checkout'
 alias gb='git branch'
 alias gl='git log --pretty=format:"%h %s" -n 5'
@@ -25,6 +25,7 @@ alias gds='git diff --staged'
 alias gt='git tag'
 alias ggraph='git log --graph --oneline --decorate --all'
 alias gpush='git push'
+alias gamend='git commit -av --amend'
 alias gpull='git pull'
 alias gll='git --no-pager log --oneline -n 5'
 alias gcm='git checkout master'
@@ -45,4 +46,26 @@ alias vstate='vagrant global-status'
 alias bexec='bundle exec'
 alias brake='bundle exec rake'
 
-alias subln='subl -n .'
+alias subln='subl -n'
+alias sublh='subl -n .'
+
+# Not an alias but my only function
+function update_repos {
+    set -e
+    old_dir=$PWD
+    echo "updateing"
+    cd ~/govuk
+    for code_directory in `ls`
+    do
+        if [[ -d $code_directory/.git ]] then;
+            echo -e "\n${code_directory}"
+            cd $code_directory
+            git stash
+            git checkout master
+            git pull
+            cd ~/govuk
+        fi
+    done
+    cd $old_dir
+    set +e
+}
