@@ -5,47 +5,21 @@
 	],
 	"installed_packages":
 	[
-		"Advanced CSV",
 		"AdvancedNewFile",
+		"Agila Theme",
 		"All Autocomplete",
-		"BetterFindBuffer",
-		"Bind Zone files",
-		"Color Highlighter",
-		"ColorPicker",
-		"CSS Snippets",
 		"Djaneiro",
-		"DocBlockr",
 		"FileDiffs",
 		"Git",
 		"GitGutter",
-		"InsertDate",
 		"JSON Reindent",
-		"LESS",
-		"Logstash Syntax Highlighting",
 		"Markdown Preview",
 		"MarkdownEditing",
 		"Origami",
 		"Package Control",
-		"Powershell Help Generator",
-		"Puppet",
-		"RSpec",
-		"Sass",
-		"Scratchpad",
 		"SideBarEnhancements",
-		"SSH Config",
 		"SublimeLinter",
-		"SublimeLinter-contrib-ruby-lint",
 		"SublimeLinter-flake8",
-		"SublimeLinter-jshint",
-		"SublimeLinter-rubocop",
-		"SublimeREPL",
-		"Terraform",
-		"Theme - Spacegray",
-		"TodoReview",
-		"Varnish VCL"
-	],
-	"repositories":
-	[
-		"https://github.com/SublimeHaskell/SublimeHaskell/tree/hsdev"
+		"SublimeLinter-jshint"
 	]
 }

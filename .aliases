@@ -49,23 +49,3 @@ alias brake='bundle exec rake'
 alias subln='subl -n'
 alias sublh='subl -n .'
 
-# Not an alias but my only function
-function update_repos {
-    set -e
-    old_dir=$PWD
-    echo "updateing"
-    cd ~/govuk
-    for code_directory in `ls`
-    do
-        if [[ -d $code_directory/.git ]] then;
-            echo -e "\n${code_directory}"
-            cd $code_directory
-            git stash
-            git checkout master
-            git pull
-            cd ~/govuk
-        fi
-    done
-    cd $old_dir
-    set +e
-}

@@ -1,14 +1,12 @@
 {
 	"animation_enabled": false,
-	"color_scheme": "Packages/User/SublimeLinter/Monokai (SL).tmTheme",
+	"color_scheme": "Packages/User/SublimeLinter/Agila Monokai Extended (SL).tmTheme",
 	"dictionary": "Packages/Language - English/en_GB.dic",
 	"ensure_newline_at_eof_on_save": true,
-	"font_face": "Hack",
-	"font_size": 14,
+	"font_size": 18,
 	"highlight_line": true,
 	"ignored_packages":
 	[
-		"BetterFindBuffer",
 		"Markdown",
 		"Vintage"
 	],
@@ -19,9 +17,21 @@
 	"scroll_past_end": true,
 	"show_encoding": true,
 	"spell_check": true,
-	"theme": "Spacegray.sublime-theme",
+	"theme": "Agila Monokai.sublime-theme",
+	"theme_agila_active_tab_entry_yellow": true,
+	"theme_agila_compact_sidebar": true,
+	"theme_agila_compact_tab": true,
+	"theme_agila_horizontal_scrollbar_gray": true,
+	"theme_agila_horizontal_scrollbar_thinnest": true,
+	"theme_agila_modified_tab_marker_yellow": true,
+	"theme_agila_sidebar_heading_yellow": true,
+	"theme_agila_sidebar_plus_minus": true,
+	"theme_agila_sidebar_selected_entry_yellow": true,
+	"theme_agila_sidebar_xsmall": true,
+	"theme_agila_vertical_scrollbar_gray": true,
+	"theme_agila_vertical_scrollbar_thinnest": true,
 	"translate_tabs_to_spaces": true,
 	"tree_animation_enabled": false,
 	"trim_trailing_white_space_on_save": true,
-	"use_simple_full_screen": true
+	"use_simple_full_screen": true,
 }
