@@ -1,5 +1,5 @@
 # Path to your oh-my-zsh installation.
-export ZSH=/Users/samcook/.oh-my-zsh
+export ZSH=/Users/scook/.oh-my-zsh
 
 # Set name of the theme to load. Optionally, if you set this to "random"
 # it'll load a random theme each time that oh-my-zsh is loaded.
@@ -13,28 +13,26 @@ HIST_STAMPS="yyyy-mm-dd"
 # Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
-plugins=(git, bundler, sublime, gem, vagrant)
+plugins=(git, bundler, sublime, vagrant, virtualenvwrapper)
 
 source $ZSH/oh-my-zsh.sh
+
+# Voodoo to set up virtual env for python and misc magic
+# where to save them...
+export WORKON_HOME=$HOME/.virtualenvs
+# where to source everything else
+source /usr/local/bin/virtualenvwrapper.sh
+# let pip know..
+export PIP_VIRTUALENV_BASE=$WORKON_HOME
 
 # Preferred editor for local and remote sessions
 export EDITOR='vim'
 
 # Add sublime to the path
 export PATH=$PATH:"/Applications/Sublime Text.app/Contents/SharedSupport/bin"
-source /usr/local/bin/virtualenvwrapper_lazy.sh
 
-# virtual env
-export WORKON_HOME=~/.virtualenvs
+# Set up Go
+export GOPATH="$HOME/code/go"
+export PATH="$GOPATH/bin:$PATH"
 
-# Autoload rbenv
-eval "$(rbenv init -)"
-
-# Import aliases
 source ~/.aliases
-
-# The next line updates PATH for the Google Cloud SDK.
-if [ -f '/Users/samcook/Downloads/google-cloud-sdk/path.zsh.inc' ]; then source '/Users/samcook/Downloads/google-cloud-sdk/path.zsh.inc'; fi
-
-# The next line enables shell command completion for gcloud.
-if [ -f '/Users/samcook/Downloads/google-cloud-sdk/completion.zsh.inc' ]; then source '/Users/samcook/Downloads/google-cloud-sdk/completion.zsh.inc'; fi
