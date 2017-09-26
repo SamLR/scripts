@@ -36,3 +36,5 @@ export GOPATH="$HOME/code/go"
 export PATH="$GOPATH/bin:$PATH"
 
 source ~/.aliases
+
+calendar -A 0 -f /usr/share/calendar/calendar.world | cut -f2
