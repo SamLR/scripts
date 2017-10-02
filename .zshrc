@@ -1,5 +1,5 @@
 # Path to your oh-my-zsh installation.
-export ZSH=/Users/scook/.oh-my-zsh
+export ZSH=$PWD/.oh-my-zsh
 
 # Set name of the theme to load. Optionally, if you set this to "random"
 # it'll load a random theme each time that oh-my-zsh is loaded.
@@ -21,7 +21,9 @@ source $ZSH/oh-my-zsh.sh
 # where to save them...
 export WORKON_HOME=$HOME/.virtualenvs
 # where to source everything else
-source /usr/local/bin/virtualenvwrapper.sh
+if [ -f /usr/local/bin/virtualenvwrapper.sh ]; then
+    source /usr/local/bin/virtualenvwrapper.sh
+fi
 # let pip know..
 export PIP_VIRTUALENV_BASE=$WORKON_HOME
 
