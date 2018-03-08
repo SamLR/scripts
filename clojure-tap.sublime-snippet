@@ -1,0 +1,13 @@
+<snippet>
+  <content><![CDATA[
+(defn tap
+  ([arg]     (tap "" arg))
+  ([msg arg]
+    (infof "TAP %s %s" msg arg)
+    arg))
+]]></content>
+  <!-- Optional: Set a tabTrigger to define how to trigger the snippet -->
+  <tabTrigger>tap</tabTrigger>
+  <!-- Optional: Set a scope to limit where the snippet will trigger -->
+  <scope>source.clojure</scope>
+</snippet>
