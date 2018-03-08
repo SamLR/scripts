@@ -12,6 +12,8 @@ alias ..='cd ../'
 
 # pretty grep
 alias grep="grep --colour=auto"
+# Pretty print json 
+alias jqp="jq '.'"
 
 # Git aliases
 alias ga='git add'
@@ -25,7 +27,8 @@ alias gds='git diff --staged'
 alias gt='git tag'
 alias ggraph='git log --graph --oneline --decorate --all'
 alias gpush='git push'
-alias gamend='git commit -av --amend'
+alias gamend='git commit -v --amend'
+alias gfixlast='git commit --amend --no-edit'
 alias gpull='git pull'
 alias gll='git --no-pager log --oneline -n 5'
 alias gcm='git checkout master'
@@ -46,6 +49,29 @@ alias vstate='vagrant global-status'
 alias bexec='bundle exec'
 alias brake='bundle exec rake'
 
+# Capistrano
+alias cap='bundle exec cap'
+
 alias subln='subl -n'
 alias sublh='subl -n .'
 
+# k8s
+alias changek8scontext='kubectl config use-context'
+alias badjobs='kubectl get job | tail +2 | grep -v "1         1"'
+alias badpods='kubectl get pod -a | tail +2 | grep -viE "(running|completed)"'
+alias slowcron='kubectl get cronjob | tail +2 | grep -v "$(date +"%a, %d %b %Y")"'
+alias forcedjobs='kubectl get job | tail +2 | grep "forced"'
+
+function update_repos(){
+    ROOT_DIR="${HOME}/code"
+    for CODE_DIR in `ls ~/code`; do
+        if [ -d "${ROOT_DIR}/${CODE_DIR}/.git" ]; then
+            cd "${ROOT_DIR}/${CODE_DIR}"
+            git stash save "update_repos save -- $(date)"
+            git checkout master
+            git pull
+            cd -
+            echo -e "*****\n"
+        fi
+    done
+}

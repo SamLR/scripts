@@ -1,5 +1,5 @@
 # Path to your oh-my-zsh installation.
-export ZSH=$PWD/.oh-my-zsh
+export ZSH=~/.oh-my-zsh
 
 # Set name of the theme to load. Optionally, if you set this to "random"
 # it'll load a random theme each time that oh-my-zsh is loaded.
@@ -13,7 +13,7 @@ HIST_STAMPS="yyyy-mm-dd"
 # Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
-plugins=(git, bundler, sublime, vagrant, virtualenvwrapper)
+plugins=(git, bundler, sublime, vagrant)
 
 source $ZSH/oh-my-zsh.sh
 
@@ -30,13 +30,16 @@ export PIP_VIRTUALENV_BASE=$WORKON_HOME
 # Preferred editor for local and remote sessions
 export EDITOR='vim'
 
-# Add sublime to the path
-export PATH=$PATH:"/Applications/Sublime Text.app/Contents/SharedSupport/bin"
-
 # Set up Go
-export GOPATH="$HOME/code/go"
-export PATH="$GOPATH/bin:$PATH"
+# export GOPATH="$HOME/code/go"
+# .... There used to be a load of PATH settings here but they're where they should be now
+# (.zshenv)
 
 source ~/.aliases
 
 calendar -A 0 -f /usr/share/calendar/calendar.world | cut -f2
+eval "$(u --completion-script-zsh)"
+source <(kubectl completion zsh)
+
+eval "$(rbenv init -)"
+
