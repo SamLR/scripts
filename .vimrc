@@ -29,7 +29,12 @@ set ignorecase
 set smartcase
 set showmatch
 set background=dark
+set clipboard=unnamed
 
+" Set F7 to toggle spelling
+set spelllang=en_gb
+map <F7> :setlocal spell! spelllang=en_gb<CR>
+imap <F7> <C-o>:setlocal spell! spelllang=en_gb<CR>
 
 " Don't use Ex mode, use Q for formatting
 map Q gq
