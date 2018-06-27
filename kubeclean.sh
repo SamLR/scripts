@@ -27,10 +27,23 @@ DELETE=$3
 
 echo "Running:   kubectl get \"$RESC\" | grep -ie \"$EXPR\" | cut -d ' ' -f1"
 
-for res in $(kubectl get "$RESC" | grep -ie "$EXPR" | cut -d ' ' -f1); do
-  if [[ ! -z $DELETE ]]; then
-    kubectl delete "$RESC" "$res"
-  else
-    echo "$res"
-  fi
+resources=$(kubectl get "$RESC" | grep -ie "$EXPR" | cut -d ' ' -f1)
+echo "$resources"
+
+if [[ -z $DELETE ]]; then
+  exit 0;
+fi
+
+while true; do
+  read -rp "Do you wish to delete these $RESC? [yN]" yn
+  case $yn in
+    [Yy]* ) DELETE=true; break;;
+    * ) exit 0;;
+  esac
 done
+
+for res in $resources; do
+  kubectl delete "$RESC" "$res"
+done
+
+echo "Done"
