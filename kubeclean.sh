@@ -25,9 +25,9 @@ fi
 
 DELETE=$3
 
-echo -e "Running:   kubectl get \"$RESC\" | grep -ie \"$EXPR\" | cut -d ' ' -f1\nGot:\n"
+echo -e "Running:   kubectl get \"$RESC\" | grep -iE \"$EXPR\" | cut -d ' ' -f1\nGot:\n"
 
-resources=$(kubectl get --no-headers "$RESC" | grep -ie "$EXPR" | cut -d ' ' -f1)
+resources=$(kubectl get --no-headers "$RESC" | grep -iE "$EXPR" | cut -d ' ' -f1)
 echo -e "$resources\n"
 
 if [[ -z $DELETE ]]; then
