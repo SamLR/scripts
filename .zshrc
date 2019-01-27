@@ -17,16 +17,6 @@ plugins=(git, bundler, sublime, vagrant)
 
 source $ZSH/oh-my-zsh.sh
 
-# Voodoo to set up virtual env for python and misc magic
-# where to save them...
-export WORKON_HOME=$HOME/.virtualenvs
-# where to source everything else
-if [ -f /usr/local/bin/virtualenvwrapper.sh ]; then
-    source /usr/local/bin/virtualenvwrapper.sh
-fi
-# let pip know..
-export PIP_VIRTUALENV_BASE=$WORKON_HOME
-
 # Preferred editor for local and remote sessions
 export EDITOR='vim'
 
