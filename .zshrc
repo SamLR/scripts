@@ -13,7 +13,7 @@ HIST_STAMPS="yyyy-mm-dd"
 # Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
-plugins=(git, bundler, sublime, vagrant)
+plugins=(git bundler sublime vagrant)
 
 source $ZSH/oh-my-zsh.sh
 
@@ -28,8 +28,10 @@ export EDITOR='vim'
 source ~/.aliases
 
 calendar -A 0 -f /usr/share/calendar/calendar.world | cut -f2
-eval "$(u --completion-script-zsh)"
-source <(kubectl completion zsh)
+if [ -x "$(command -v kubectl)" ]; then
+	source <(kubectl completion zsh)
+else
+	print "kubectl not installed"
+fi
 
-eval "$(rbenv init -)"
 
