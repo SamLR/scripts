@@ -34,4 +34,9 @@ else
 	print "kubectl not installed"
 fi
 
+if [ -f "/usr/local/Cellar/awscli/1.16.130/share/zsh/site-functions/aws_zsh_completer.sh" ]; then
+	source /usr/local/Cellar/awscli/1.16.130/share/zsh/site-functions/aws_zsh_completer.sh
+else
+	print "can't source awscli compelter"
+fi
 

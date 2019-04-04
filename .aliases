@@ -12,8 +12,7 @@ alias ..='cd ../'
 
 # pretty grep
 alias grep="grep --colour=auto"
-# Pretty print json 
-alias jqp="jq '.'"
+alias caltoday="calendar -A 0 -f /usr/share/calendar/calendar.world | cut -f2"
 
 # Git aliases
 alias ga='git add'
@@ -45,22 +44,12 @@ alias vdestroy='vagrant destroy'
 alias vrestore='vagrant snapshot restore'
 alias vstate='vagrant global-status'
 
-# Bundler
-alias bexec='bundle exec'
-alias brake='bundle exec rake'
-
-# Capistrano
-alias cap='bundle exec cap'
-
+# Sublime
 alias subln='subl -n'
 alias sublh='subl -n .'
 
 # k8s
-alias changek8scontext='kubectl config use-context'
-alias badjobs='kubectl get job | tail +2 | grep -v "1         1"'
-alias badpods='kubectl get pod -a | tail +2 | grep -viE "(running|completed)"'
-alias slowcron='kubectl get cronjob | tail +2 | grep -v "$(date +"%a, %d %b %Y")"'
-alias forcedjobs='kubectl get job | tail +2 | grep "forced"'
+alias klogs='kubectl logs'
 
 function update_repos(){
     ROOT_DIR="${HOME}/code"
