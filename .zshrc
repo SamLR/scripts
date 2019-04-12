@@ -40,3 +40,9 @@ else
 	print "can't source awscli compelter"
 fi
 
+if [ -x "$(command -v minikube)" ]; then
+	source <(minikube completion zsh)
+else
+	print "minikube not installed"
+fi
+
