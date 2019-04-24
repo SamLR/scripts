@@ -107,3 +107,9 @@ function ec2ip(){
   query="Name=private-ip-address,Values=${1}"
   aws ec2 describe-instances --filter "${query}" |  jq 'if (.Reservations | length) > 0 then .Reservations[].Instances[]|{"name": .Tags | map(select(.Key=="Name").Value)[0], "id": .InstanceId, "type":.InstanceType, "image":.ImageId, "state": .State.Name} else "not found" end'
 }
+
+
+function ec2info(){
+  query="Name=tag:Name,Values=*${1}*"
+  aws ec2 describe-instances --filter "${query}" |  jq 'if (.Reservations | length) > 0 then .Reservations[].Instances[]|{"name": .Tags | map(select(.Key=="Name").Value)[0], "id": .InstanceId, "type":.InstanceType, "image":.ImageId, "state": .State.Name} else "not found" end'
+}
