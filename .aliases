@@ -102,3 +102,8 @@ function ec2(){
 	query="Name=tag:Name,Values=*${1}*"
 	aws ec2 describe-instances --filter "${query}" |  jq 'if (.Reservations | length ) > 1 or (.Reservations[0].Instances | length ) > 1 then .Reservations[].Instances[] | {"ip":.PrivateIpAddress, "name": .Tags | map(select(.Key=="Name").Value)[0]} else .Reservations[0].Instances[0].PrivateIpAddress end' -cr
 }
+
+function ec2ip(){
+  query="Name=private-ip-address,Values=${1}"
+  aws ec2 describe-instances --filter "${query}" |  jq 'if (.Reservations | length) > 0 then .Reservations[].Instances[]|{"name": .Tags | map(select(.Key=="Name").Value)[0], "id": .InstanceId, "type":.InstanceType, "image":.ImageId, "state": .State.Name} else "not found" end'
+}
