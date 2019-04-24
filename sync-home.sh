@@ -2,11 +2,17 @@
 
 sync_files=(".vimrc" ".zshrc" ".zshenv" ".aliases")
 
+if [ -x "$(command -v colordiff)" ]; then
+  diff_cmd=colordiff
+else
+  diff_cmd=diff
+fi
+
 if [ -z $1 ]; then
   for f in ${sync_files[*]};
   do
     echo "diffing ${HOME}/${f} ${PWD}/${f}"
-    diff "${HOME}/${f}" "${PWD}/${f}"
+    $diff_cmd "${HOME}/${f}" "${PWD}/${f}"
   done
 elif [[ $1 == "--from-home" ]]; then
   echo "Copying files from ${HOME} to here"
