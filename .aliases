@@ -76,7 +76,13 @@ function update_repos(){
 export TZ_I_CARE_ABOUT=(America/Chicago America/Sao_Paulo Europe/London Australia/Sydney)
 function now(){
     for t in "${TZ_I_CARE_ABOUT[@]}"; do
-        TZ=$t date
+        TZ=$t date +%F\ %H:%M\ %Z
+    done
+}
+
+function tztime(){
+    for t in "${TZ_I_CARE_ABOUT[@]}"; do
+        TZ=$t gdate --date="TZ=\"Europe/London\" ${1}" +%F\ %H:%M\ %Z
     done
 }
 
