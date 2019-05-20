@@ -49,6 +49,11 @@ alias sublh='subl -n .'
 
 # k8s
 alias klogs='kubectl logs'
+alias kgd='kubectl get deployments'
+alias kgj='kubectl get jobs'
+alias kgp='kubectl get pods'
+alias kgs='kubectl get svc'
+alias kgi='kubectl get ingress'
 
 # python stuff, want to default to py3
 alias python='python3'
