@@ -8,6 +8,7 @@
 alias ls='ls -G'
 alias l='ls -lha'
 alias ..='cd ../'
+alias canIP='curl canhazip.com'
 
 # pretty grep
 alias grep="grep --colour=auto"
@@ -58,7 +59,6 @@ alias kgi='kubectl get ingress'
 # python stuff, want to default to py3
 alias python='python3'
 alias pip='pip3'
-alias venv='python -m venv'
 alias ipython='source ~/venvs/ipython/ipython/bin/activate; ~/venvs/ipython/ipython/bin/ipython'
 alias jupyter='source ~/venvs/ipython/ipython/bin/activate; ~/venvs/ipython/ipython/bin/jupyter'
 alias ansible='source ~/venvs/ansible/ansible/bin/activate; ~/venvs/ansible/ansible/bin/ansible'
@@ -78,7 +78,7 @@ function update_repos(){
     done
 }
 
-export TZ_I_CARE_ABOUT=(America/Chicago America/Sao_Paulo Europe/London Australia/Sydney)
+export TZ_I_CARE_ABOUT=(America/Chicago America/Sao_Paulo Europe/London Europe/Prague  Australia/Sydney)
 function now(){
     for t in "${TZ_I_CARE_ABOUT[@]}"; do
         TZ=$t date +%F\ %H:%M\ %Z
