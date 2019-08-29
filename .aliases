@@ -55,13 +55,22 @@ alias kgj='kubectl get jobs'
 alias kgp='kubectl get pods'
 alias kgs='kubectl get svc'
 alias kgi='kubectl get ingress'
+alias kdp='kubectl delete pod'
 
 # python stuff, want to default to py3
 alias python='python3'
 alias pip='pip3'
-alias ipython='source ~/venvs/ipython/ipython/bin/activate; ~/venvs/ipython/ipython/bin/ipython'
-alias jupyter='source ~/venvs/ipython/ipython/bin/activate; ~/venvs/ipython/ipython/bin/jupyter'
-alias ansible='source ~/venvs/ansible/ansible/bin/activate; ~/venvs/ansible/ansible/bin/ansible'
+
+function srcv(){
+  source "${HOME}/venvs/${1}/bin/activate"
+}
+alias ipython='srcv ipython; ~/venvs/ipython/bin/ipython'
+alias jupyter='srcv ipython; ~/venvs/ipython/bin/jupyter'
+alias ansible='srcv ansible; ~/venvs/ansible/bin/ansible'
+alias ansible-playbook='srcv ansible; ~/venvs/ansible/bin/ansible-playbook'
+
+alias src-scratch='srcv ipython'
+
 
 function update_repos(){
     for CODE_DIR in ~/code/* ; do
@@ -118,7 +127,6 @@ function ec2ip(){
   query="Name=private-ip-address,Values=${1}"
   aws ec2 describe-instances --filter "${query}" |  jq 'if (.Reservations | length) > 0 then .Reservations[].Instances[]|{"name": .Tags | map(select(.Key=="Name").Value)[0], "id": .InstanceId, "type":.InstanceType, "image":.ImageId, "state": .State.Name} else "not found" end'
 }
-
 
 function ec2info(){
   query="Name=tag:Name,Values=*${1}*"
