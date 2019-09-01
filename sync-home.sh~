@@ -18,7 +18,7 @@ elif [[ $1 == "--from-home" ]]; then
   echo "Copying files from ${HOME} to here"
   for f in ${sync_files[*]};
   do
-    echo "copying ${f} to here"
+    echo "copying ${f}"
     cp "${HOME}/${f}" "${PWD}/${f}"
   done
 elif [[ $1 == "--to-home" ]]; then
@@ -26,8 +26,8 @@ elif [[ $1 == "--to-home" ]]; then
   echo "WARNING this will overwrite the versions of these files in ${HOME}"
   for f in ${sync_files[*]};
   do
-    echo "copying ${f} to home"
-    cp "${PWD}/${f}" "${HOME}/${f}"
+    echo "copying ${f}"
+    cp "${HOME}/${f}" "${PWD}/${f}"
   done
 else
   echo -e "Usage: $0 [OPTIONS]\n"
