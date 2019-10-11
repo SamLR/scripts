@@ -50,12 +50,13 @@ alias sublh='subl -n .'
 
 # k8s
 alias klogs='kubectl logs'
+alias kdp='kubectl delete pod'
 alias kgd='kubectl get deployments'
+alias kgi='kubectl get ingress'
 alias kgj='kubectl get jobs'
+alias kgn='kubectl get nodes'
 alias kgp='kubectl get pods'
 alias kgs='kubectl get svc'
-alias kgi='kubectl get ingress'
-alias kdp='kubectl delete pod'
 
 # python stuff, want to default to py3
 alias python='python3'
@@ -120,7 +121,7 @@ function b64e(){
 
 function ec2(){
 	query="Name=tag:Name,Values=*${1}*"
-	aws ec2 describe-instances --filter "${query}" |  jq 'if (.Reservations | length ) > 1 or (.Reservations[0].Instances | length ) > 1 then .Reservations[].Instances[] | {"ip":.PrivateIpAddress, "name": .Tags | map(select(.Key=="Name").Value)[0]} else .Reservations[0].Instances[0].PrivateIpAddress end' -cr
+	aws ec2 describe-instances --filter "${query}" |  jq 'if (.Reservations | length ) > 1 or (.Reservations[0].Instances | length ) > 1 then .Reservations[].Instances[] | {"ip":.PrivateIpAddress, "id":.InstanceId, "name": .Tags | map(select(.Key=="Name").Value)[0]} else .Reservations[0].Instances[0].PrivateIpAddress end' -cr
 }
 
 function ec2ip(){
