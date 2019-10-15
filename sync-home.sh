@@ -1,6 +1,6 @@
 #! /bin/bash
 
-sync_files=(".vimrc" ".zshrc" ".zshenv" ".aliases")
+sync_files=(".vimrc" ".zshrc" ".zshenv" ".aliases" ".gitignore_global")
 
 if [ -x "$(command -v colordiff)" ]; then
   diff_cmd=colordiff
