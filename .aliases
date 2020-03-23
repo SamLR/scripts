@@ -50,13 +50,15 @@ alias sublh='subl -n .'
 
 # k8s
 alias klogs='kubectl logs'
-alias kdp='kubectl delete pod'
+alias kdp='kubectl describe pod'
+alias krmp='kubectl delete pod'
 alias kgd='kubectl get deployments'
 alias kgi='kubectl get ingress'
 alias kgj='kubectl get jobs'
 alias kgn='kubectl get nodes'
 alias kgp='kubectl get pods'
 alias kgs='kubectl get svc'
+alias kuc='kubectl config use-context'
 
 # python stuff, want to default to py3
 alias python='python3'
@@ -67,11 +69,16 @@ function srcv(){
 }
 alias ipython='srcv ipython; ~/venvs/ipython/bin/ipython'
 alias jupyter='srcv ipython; ~/venvs/ipython/bin/jupyter'
-alias ansible='srcv ansible; ~/venvs/ansible/bin/ansible'
-alias ansible-playbook='srcv ansible; ~/venvs/ansible/bin/ansible-playbook'
 
 alias src-scratch='srcv ipython'
 
+# Terraform stuff
+alias tfplan='terraform plan'
+alias tfinit='terraform init'
+alias tfapply='terraform apply'
+alias tfvalidate='terraform validate'
+alias tfworkspace='terraform workspace select'
+alias tflsworkspace='terraform workspace list'
 
 function update_repos(){
     for CODE_DIR in ~/code/* ; do
@@ -133,3 +140,10 @@ function ec2info(){
   query="Name=tag:Name,Values=*${1}*"
   aws ec2 describe-instances --filter "${query}" |  jq 'if (.Reservations | length) > 0 then .Reservations[].Instances[]|{"name": .Tags | map(select(.Key=="Name").Value)[0], "id": .InstanceId, "type":.InstanceType, "image":.ImageId, "state": .State.Name} else "not found" end'
 }
+
+function route53(){
+  src-scratch
+  python ~/code/scratch/route53_hunter.py "${1}"
+  deactivate
+}
+
