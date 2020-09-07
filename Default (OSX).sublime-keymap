@@ -22,6 +22,12 @@
   { "keys": ["ctrl+alt+a"],
     "command": "bh_key", "args": {"lines" : true, "plugin": {"type": ["__all__"], "command": "bh_modules.bracketselect"} } },
 
+  // Reset f5 to sort and make ctrl+f5 date panel
+  { "keys": ["f5"],
+    "command": "sort_lines" },
+  { "keys": ["ctrl+f5"],
+    "command": "insert_date_panel" },
+
   // Select tag name of HTML/XML tag (both opening name and closing)
   { "keys": ["ctrl+alt+t"],
     "command": "bh_key", "args": {"plugin": {"type": ["cfml", "html", "angle"], "command": "bh_modules.tagnameselect"} } },
@@ -29,7 +35,6 @@
   // Toggle high visibility mode
   { "keys": ["alt+super+="],
     "command": "bh_toggle_high_visibility"},
-
   // REPL stuff
   { "keys": ["ctrl+alt+super+f12"],
     "command": "run_existing_window_command",
@@ -49,80 +54,5 @@
     "command": "repl_transfer_current",
     "args": {"scope": "block", "action":"view_write"
     }
-  },
-
-  // Disable single quote auto-pairing in clojure
-    {
-    "keys": ["'"],
-    "command": "insert_snippet",
-    "args": {
-      "contents": "'"
-    },
-    "context": [
-      {
-        "key": "selection_empty",
-        "operator": "equal",
-        "operand": true,
-        "match_all": true
-      },
-      {
-        "key": "selector",
-        "operator": "equal",
-        "operand": "source.clojure"
-      }
-    ]
-  },
-  {
-    "keys": ["'"],
-    "command": "insert_snippet",
-    "args": {
-      "contents": "'${0:$SELECTION}'"
-    },
-    "context": [
-      {
-        "key": "setting.auto_match_enabled",
-        "operator": "equal",
-        "operand": true
-      },
-      {
-        "key": "selection_empty",
-        "operator": "equal",
-        "operand": false,
-        "match_all": true
-      },
-      {
-        "key": "selector",
-        "operator": "equal",
-        "operand": "source.clojure"
-      }
-    ]
-  },
-  {
-    "keys": ["'"],
-    "command": "noop",
-    "context": [
-      {
-        "key": "setting.auto_match_enabled",
-        "operator": "equal",
-        "operand": true
-      },
-      {
-        "key": "selection_empty",
-        "operator": "equal",
-        "operand": true,
-        "match_all": true
-      },
-      {
-        "key": "following_text",
-        "operator": "regex_contains",
-        "operand": "^'",
-        "match_all": true
-      },
-      {
-        "key": "selector",
-        "operator": "equal",
-        "operand": "source.clojure"
-      }
-    ]
   }
 ]
