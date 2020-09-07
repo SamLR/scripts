@@ -9,10 +9,11 @@ alias ls='ls -G'
 alias l='ls -lha'
 alias ..='cd ../'
 alias canIP='curl canhazip.com'
+alias caltoday="calendar -A 0 -f /usr/share/calendar/calendar.world | cut -f2"
+alias genpassword="python -c \"import random; import string; print(''.join([random.choice(string.digits + string.ascii_letters) for i in range(12)]))\""
 
 # pretty grep
 alias grep="grep --colour=auto"
-alias caltoday="calendar -A 0 -f /usr/share/calendar/calendar.world | cut -f2"
 
 # Git aliases
 alias ga='git add'
@@ -79,6 +80,10 @@ alias tfapply='terraform apply'
 alias tfvalidate='terraform validate'
 alias tfworkspace='terraform workspace select'
 alias tflsworkspace='terraform workspace list'
+
+function reminder() {
+  echo -e "\n\033[31m\033[1m\t\t${@}\033[0m\n"
+}
 
 function update_repos(){
     for CODE_DIR in ~/code/* ; do

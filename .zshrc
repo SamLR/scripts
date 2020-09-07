@@ -13,12 +13,16 @@ HIST_STAMPS="yyyy-mm-dd"
 # Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
-plugins=(git bundler sublime vagrant colored-man-pages)
+plugins=(git bundler sublime vagrant colored-man-pages terraform)
 
 source $ZSH/oh-my-zsh.sh
 
 # Preferred editor for local and remote sessions
 export EDITOR='vim'
+
+# This is probably needed to make sure that GPG prompts for passwords correctly
+GPG_TTY=$(tty)
+export GPG_TTY
 
 # Set up Go
 # export GOPATH="$HOME/code/go"
