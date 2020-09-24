@@ -4,8 +4,9 @@ set -e # we set '-u' (unused variables) once we've checked CLI args
 NOT_SET="not-set" # Error check value
 
 function usage(){
-  echo -e "usage:\t\t${0} TARGET_IP [USER] [NO_SSH] [PUBLIC_IP]\n"
+  echo -e "usage:\t\t${0} [TARGET_IP|-n NAME] [USER] [NO_SSH] [PUBLIC_IP]\n"
   echo -e "TARGET_IP\tIP of the target EC2 instance"
+  echo -e "-n NAME\t\tName of the instance to search for"
   echo -e "USER\t\tUser to log into both boxes as (default: 'ubuntu')"
   echo -e "NO_SSH\t\tDon't open an SSH session (e.g. if you want to run ansible)"
   echo -e "PUBLIC_IP\tThe target IP is the instance's public address."
@@ -19,31 +20,17 @@ function print-error(){
   exit 1
 }
 
-function ip2ec2id(){
-  IPFilter="Name=private-ip-address,Values=${1}"
-  filterId="if (.Reservations | length) > 0 then .Reservations[].Instances[] | .InstanceId else \"${NOT_SET}\" end"
-
-  aws ec2 describe-instances --filter "${IPFilter}" | jq -r "${filterId}"
-}
-function publicip2ec2id(){
-  IPFilter="Name=network-interface.association.public-ip,Values=${1}"
-  filterId="if (.Reservations | length) > 0 then .Reservations[].Instances[] | .InstanceId else \"${NOT_SET}\" end"
+function searchForIdBy(){ # search term, value
+  IPFilter="Name=${1},Values=${2}"
+  filterId="if (.Reservations | length) == 1 then .Reservations[].Instances[] | .InstanceId else \"${NOT_SET}\" end"
 
   aws ec2 describe-instances --filter "${IPFilter}" | jq -r "${filterId}"
 }
 
-function ip2az(){
-  IPFilter="Name=private-ip-address,Values=${1}"
-  filterAz="if (.Reservations | length) > 0 then .Reservations[].Instances[] | .Placement.AvailabilityZone else \"${NOT_SET}\" end"
+function getValueForId() { # ec2 id, value to return
+  filterAz="if (.Reservations | length) == 1 then .Reservations[].Instances[] | ${2} else \"${NOT_SET}\" end"
 
-  aws ec2 describe-instances --filter "${IPFilter}" | jq -r "${filterAz}"
-}
-
-function publicip2az(){
-  IPFilter="Name=network-interface.association.public-ip,Values=${1}"
-  filterAz="if (.Reservations | length) > 0 then .Reservations[].Instances[] | .Placement.AvailabilityZone else \"${NOT_SET}\" end"
-
-  aws ec2 describe-instances --filter "${IPFilter}" | jq -r "${filterAz}"
+  aws ec2 describe-instances --instance-id "${1}" | jq -r "${filterAz}"
 }
 
 function check-set(){
@@ -70,23 +57,37 @@ if [[ ! -x $(command -v jq) ]]; then
   print-error "jq needs to be installed"
 fi
 
-TARGET_IP="${1:-${NOT_SET}}"
-USER="${2:-ubuntu}"
-NO_SSH="${3:-${NOT_SET}}"
-PUBLIC_IP="${4:-${NOT_SET}}"
+if [[ "${1}" == "-n" ]]; then
+  TARGET_IP="${NOT_SET}"
+  NAME="${2:-${NOT_SET}}"
+  check-set "${NAME}" "NAME not set"
 
-check-set "${TARGET_IP}" "TARGET_IP not set"
+  USER="${3:-ubuntu}"
+  NO_SSH="${4:-${NOT_SET}}"
+  PUBLIC_IP="${NOT_SET}"
+
+else
+  TARGET_IP="${1:-${NOT_SET}}"
+  NAME="${NOT_SET}"
+  check-set "${TARGET_IP}" "TARGET_IP not set"
+
+  USER="${2:-ubuntu}"
+  NO_SSH="${3:-${NOT_SET}}"
+  PUBLIC_IP="${4:-${NOT_SET}}"
+fi
+
 
 # Exit on unbound variables from here
 set -u
-if [[ "${PUBLIC_IP}" == "${NOT_SET}" ]];
-then
-  TARGET_ID=$(ip2ec2id "${TARGET_IP}")
-  TARGET_AZ=$(ip2az "${TARGET_IP}")
+if [[ "${NAME}" != "${NOT_SET}" ]]; then
+  TARGET_ID=$(searchForIdBy "tag:Name" "*${NAME}*")
+  TARGET_IP=$(getValueForId "${TARGET_ID}" ".PrivateIpAddress")
+elif [[ "${PUBLIC_IP}" == "${NOT_SET}" ]]; then
+  TARGET_ID=$(searchForIdBy "private-ip-address" "${TARGET_IP}")
 else
-  TARGET_ID=$(publicip2ec2id "${TARGET_IP}")
-  TARGET_AZ=$(publicip2az "${TARGET_IP}")
+  TARGET_ID=$(searchForIdBy "network-interface.association.public-ip" "${TARGET_IP}")
 fi
+TARGET_AZ=$(getValueForId "${TARGET_ID}" ".Placement.AvailabilityZone")
 
 check-set "${TARGET_ID}" "An ID for TARGET_IP (${TARGET_IP}) could not be found by EC2"
 check-set "${TARGET_AZ}" "An AZ for TARGET_IP (${TARGET_IP}) could not be found by EC2"
