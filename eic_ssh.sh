@@ -1,5 +1,6 @@
 #!/bin/bash
 set -e # we set '-u' (unused variables) once we've checked CLI args
+set -o pipefail
 
 NOT_SET="not-set" # Error check value
 
