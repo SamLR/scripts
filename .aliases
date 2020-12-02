@@ -28,7 +28,10 @@ alias gt='git tag'
 alias ggraph='git log --graph --oneline --decorate --all'
 alias gpush='git push'
 alias gamend='git commit -v --amend'
+alias gfixup='git commit --fixup'
 alias gfixlast='git commit --amend --no-edit'
+alias girebase='git rebase -i --autosquash'
+alias girebasem='git rebase -i --autosquash master'
 alias gpull='git pull'
 alias gll='git --no-pager log --oneline -n 5'
 alias gcm='git checkout master'
@@ -60,6 +63,7 @@ alias kgn='kubectl get nodes'
 alias kgp='kubectl get pods'
 alias kgs='kubectl get svc'
 alias kuc='kubectl config use-context'
+alias kgetcontexts='kubectl config get-contexts'
 
 # python stuff, want to default to py3
 alias python='python3'
@@ -80,6 +84,9 @@ alias tfapply='terraform apply'
 alias tfvalidate='terraform validate'
 alias tfworkspace='terraform workspace select'
 alias tflsworkspace='terraform workspace list'
+alias tf13='tfenv use 0.13.3'
+alias tf12='tfenv use 0.12.24'
+alias tfclean='rm -f .terraform/{environment,terraform.tfstate}'
 
 function reminder() {
   echo -e "\n\033[31m\033[1m\t\t${@}\033[0m\n"
