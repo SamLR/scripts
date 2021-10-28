@@ -9,6 +9,6 @@ export PATH="/usr/local/bin:/usr/local/sbin:${HOME}/bin:${PATH}"
 # Disable the AWS cli pager
 export AWS_PAGER=""
 
-# Lucid Okta gubbins
-export AWS_SDK_LOAD_CONFIG=1 # loads ~/.aws/config into ~/.aws/credentials
-
+if [[ -f ~/.secrets ]]; then
+  source ~/.secrets
+fi

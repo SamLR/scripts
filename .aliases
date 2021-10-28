@@ -161,3 +161,5 @@ function route53(){
   deactivate
 }
 
+# Unalias one of the oh-my-zsh defaults so we can use gsts
+unalias gsts
