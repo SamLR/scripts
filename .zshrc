@@ -32,23 +32,24 @@ export GPG_TTY
 source ~/.aliases
 
 calendar -A 0 -f /usr/share/calendar/calendar.world | cut -f2
+
+autoload bashcompinit && bashcompinit
+autoload -Uz compinit && compinit
+
+complete -C '/usr/local/bin/aws_completer' aws
+
 if [ -x "$(command -v kubectl)" ]; then
 	source <(kubectl completion zsh)
 else
 	print "kubectl not installed"
 fi
 
-if [ -f "$(brew --prefix)/share/zsh/site-functions/aws_zsh_completer.sh" ]; then
-	source $(brew --prefix)/share/zsh/site-functions/aws_zsh_completer.sh
-else
-	print "can't source awscli compelter"
-fi
-
-if [ -x "$(command -v minikube)" ]; then
-	source <(minikube completion zsh)
-else
-	print "minikube not installed"
-fi
-
 
 test -e "${HOME}/.iterm2_shell_integration.zsh" && source "${HOME}/.iterm2_shell_integration.zsh"
+
+eval "$(direnv hook zsh)"
+
+# setup autocd so that we can easily jump between dirs in code
+setopt auto_cd
+cdpath=($HOME/code)
+

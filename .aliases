@@ -11,6 +11,7 @@ alias ..='cd ../'
 alias canIP='curl canhazip.com'
 alias caltoday="calendar -A 0 -f /usr/share/calendar/calendar.world | cut -f2"
 alias genpassword="python -c \"import random; import string; print(''.join([random.choice(string.digits + string.ascii_letters) for i in range(12)]))\""
+alias yqp='yq e "." -'
 
 # pretty grep
 alias grep="grep --colour=auto"
@@ -31,10 +32,10 @@ alias gamend='git commit -v --amend'
 alias gfixup='git commit --fixup'
 alias gfixlast='git commit --amend --no-edit'
 alias girebase='git rebase -i --autosquash'
-alias girebasem='git rebase -i --autosquash master'
+alias girebasem='git rebase -i --autosquash main || git rebase -i --autosquash master'
 alias gpull='git pull'
 alias gll='git --no-pager log --oneline -n 5'
-alias gcm='git checkout master || git checkout main'
+alias gcm='git checkout main || git checkout master'
 alias gcb='git checkout -b'
 
 # Vagrant aliases
@@ -78,6 +79,9 @@ alias jupyter='srcv ipython; ~/venvs/ipython/bin/jupyter'
 
 alias src-scratch='srcv ipython'
 
+# quick docker conf
+alias dubuntu='docker run -ti --rm ubuntu bash'
+
 # Terraform stuff
 alias tfplan='terraform plan'
 alias tfinit='terraform init'
@@ -85,9 +89,10 @@ alias tfapply='terraform apply'
 alias tfvalidate='terraform validate'
 alias tfworkspace='terraform workspace select'
 alias tflsworkspace='terraform workspace list'
-alias tf14='tfenv use 0.14.5'
-alias tf13='tfenv use 0.13.3'
 alias tf12='tfenv use 0.12.24'
+alias tf13='tfenv use 0.13.7'
+alias tf14='tfenv use 0.14.11'
+alias tf1='tfenv use 1.0.10' 
 alias tfclean='rm -f .terraform/{environment,terraform.tfstate}'
 
 function reminder() {
@@ -109,16 +114,16 @@ function update_repos(){
     done
 }
 
-export TZ_I_CARE_ABOUT=(America/Chicago America/Sao_Paulo Europe/London Europe/Prague  Australia/Sydney)
+export TZ_I_CARE_ABOUT=(US/Eastern Europe/London Australia/Sydney)
 function now(){
     for t in "${TZ_I_CARE_ABOUT[@]}"; do
-        TZ=$t date +%F\ %H:%M\ %Z
+        echo $(TZ=$t date +%F\ %H:%M\ %Z) -- $t
     done
 }
 
 function tztime(){
     for t in "${TZ_I_CARE_ABOUT[@]}"; do
-        TZ=$t gdate --date="TZ=\"Europe/London\" ${1}" +%F\ %H:%M\ %Z
+        echo $(TZ=$t gdate --date="TZ=\"Europe/London\" ${1}" +%F\ %H:%M\ %Z) -- $t
     done
 }
 
@@ -153,12 +158,6 @@ function ec2ip(){
 function ec2info(){
   query="Name=tag:Name,Values=*${1}*"
   aws ec2 describe-instances --filter "${query}" |  jq 'if (.Reservations | length) > 0 then .Reservations[].Instances[]|{"name": .Tags | map(select(.Key=="Name").Value)[0], "id": .InstanceId, "type":.InstanceType, "image":.ImageId, "state": .State.Name} else "not found" end'
-}
-
-function route53(){
-  src-scratch
-  python ~/code/scratch/route53_hunter.py "${1}"
-  deactivate
 }
 
 # Unalias one of the oh-my-zsh defaults so we can use gsts
