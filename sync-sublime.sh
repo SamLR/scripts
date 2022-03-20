@@ -23,20 +23,20 @@ if [ -z $1 ]; then
     echo "diffing ${TGT_ROOT}/${f} ${PWD}/${f}"
     $diff_cmd "${TGT_ROOT}/${f}" "${PWD}/${f}"
   done
-elif [[ $1 == "--from-home" ]]; then
+elif [[ $1 == "--from-library" ]]; then
   echo "Copying files from ${TGT_ROOT} to here"
   for f in "${sync_files[@]}";
   do
     echo "copying ${f} to here"
-    echo cp "${TGT_ROOT}/${f}" "${PWD}/${f}"
+    cp "${TGT_ROOT}/${f}" "${PWD}/${f}"
   done
-elif [[ $1 == "--to-home" ]]; then
+elif [[ $1 == "--to-library" ]]; then
   echo "Copying files from here to ${TGT_ROOT}"
   echo "WARNING this will overwrite the versions of these files in ${TGT_ROOT}"
   for f in "${sync_files[@]}";
   do
     echo "copying ${f} to home"
-    echo cp "${PWD}/${f}" "${TGT_ROOT}/${f}"
+    cp "${PWD}/${f}" "${TGT_ROOT}/${f}"
   done
 else
   echo -e "Usage: $0 [OPTIONS]\n"
