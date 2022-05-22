@@ -1,0 +1,4 @@
+[
+    { "keys": ["super+g","d"], "command": "godef" },
+    { "keys": ["super+g","h"], "command": "godef_prev" }
+]
