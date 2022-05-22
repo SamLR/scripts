@@ -1,19 +1,25 @@
 #! /bin/bash
 
-# declare -a sync_files=( "Default (OSX).sublime-keymap" )
 declare -a sync_files=( \
   "Default (OSX).sublime-keymap" \
   "Package Control.sublime-settings" \
   "Preferences.sublime-settings" \
-  "footnote-bottom.sublime-snippet" \
-  "footnote.sublime-snippet"
+  # "*.sublime-snippet"
+  # "footnote-bottom.sublime-snippet" \
+  # "footnote.sublime-snippet"
 )
+
+sync_extension="*.sublime-snippet"
 
 if [ -x "$(command -v colordiff)" ]; then
   diff_cmd=colordiff
 else
   diff_cmd=diff
 fi
+
+for sub_file in $sync_extension ; do
+  sync_files+=("${sub_file}")
+done
 
 TGT_ROOT="${HOME}/Library/Application Support/Sublime Text/Packages/User"
 
