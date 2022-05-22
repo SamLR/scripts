@@ -9,7 +9,9 @@
 		"Agila Theme",
 		"All Autocomplete",
 		"BracketHighlighter",
+		"Django Syntax",
 		"Dockerfile Syntax Highlighting",
+		"Emoji",
 		"FileDiffs",
 		"Git",
 		"GitGutter",
@@ -25,6 +27,7 @@
 		"nginx",
 		"Origami",
 		"Package Control",
+		"Protobuf Syntax Hightlighting",
 		"SideBarEnhancements",
 		"SqlBeautifier",
 		"SublimeLinter",
@@ -35,6 +38,6 @@
 		"Sync View Scroll",
 		"Terrafmt",
 		"Terraform",
-		"TOML"
-	]
+		"TOML",
+	],
 }
