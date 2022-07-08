@@ -72,6 +72,10 @@ alias ksetns='kubectl config set-context --current --namespace'
 # Use a global alias for outputting stuff in pretty yaml
 alias -g oyq='-o yaml | yq'
 
+# flux stuff
+alias freconh='flux reconcile helmrelease --with-source'
+alias freconk='flux reconcile kustomization --with-source'
+
 # python stuff, want to default to py3
 alias python='python3'
 alias pip='pip3'
