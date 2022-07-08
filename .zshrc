@@ -13,7 +13,13 @@ HIST_STAMPS="yyyy-mm-dd"
 # Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
-plugins=(git bundler sublime vagrant colored-man-pages terraform)
+plugins=(
+	colored-man-pages
+	git
+	kubectx
+	shrink-path
+	terraform
+)
 
 source $ZSH/oh-my-zsh.sh
 
@@ -52,4 +58,3 @@ eval "$(direnv hook zsh)"
 # setup autocd so that we can easily jump between dirs in code
 setopt auto_cd
 cdpath=($HOME/code)
-

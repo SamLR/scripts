@@ -12,6 +12,7 @@ alias canIP='curl canhazip.com'
 alias caltoday="calendar -A 0 -f /usr/share/calendar/calendar.world | cut -f2"
 alias genpassword="python -c \"import random; import string; print(''.join([random.choice(string.digits + string.ascii_letters) for i in range(12)]))\""
 alias yqp='yq e "." -'
+alias ghist='history | grep -iE'
 
 # pretty grep
 alias grep="grep --colour=auto"
@@ -57,15 +58,19 @@ alias sublh='subl -n .'
 alias klogs='kubectl logs'
 alias kdp='kubectl describe pod'
 alias krmp='kubectl delete pod'
+alias kg='kubectl get'
 alias kgd='kubectl get deployments'
 alias kgi='kubectl get ingress'
 alias kgj='kubectl get jobs'
 alias kgn='kubectl get nodes'
 alias kgp='kubectl get pods'
+alias kgpa='kubectl get pods -A'
 alias kgs='kubectl get svc'
 alias kuc='kubectl config use-context'
 alias kgetcontexts='kubectl config get-contexts'
 alias ksetns='kubectl config set-context --current --namespace'
+# Use a global alias for outputting stuff in pretty yaml
+alias -g oyq='-o yaml | yq'
 
 # python stuff, want to default to py3
 alias python='python3'
