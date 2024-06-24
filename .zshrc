@@ -41,7 +41,7 @@ source ~/.aliases
 autoload bashcompinit && bashcompinit
 autoload -Uz compinit && compinit
 
-complete -C '/usr/local/bin/aws_completer' aws
+complete -C '/opt/homebrew/bin/aws_completer' aws
 
 if [ -x "$(command -v kubectl)" ]; then
 	source <(kubectl completion zsh)
