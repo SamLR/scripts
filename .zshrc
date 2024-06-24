@@ -19,6 +19,7 @@ plugins=(
 	kubectx
 	shrink-path
 	terraform
+	git-prompt
 )
 
 source $ZSH/oh-my-zsh.sh
@@ -37,8 +38,6 @@ export GPG_TTY
 
 source ~/.aliases
 
-calendar -A 0 -f /usr/share/calendar/calendar.world | cut -f2
-
 autoload bashcompinit && bashcompinit
 autoload -Uz compinit && compinit
 
@@ -53,8 +52,8 @@ fi
 
 test -e "${HOME}/.iterm2_shell_integration.zsh" && source "${HOME}/.iterm2_shell_integration.zsh"
 
-eval "$(direnv hook zsh)"
-
 # setup autocd so that we can easily jump between dirs in code
 setopt auto_cd
 cdpath=($HOME/code)
+
+source <(fzf --zsh)

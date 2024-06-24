@@ -9,7 +9,6 @@ alias ls='ls -G'
 alias l='ls -lha'
 alias ..='cd ../'
 alias canIP='curl canhazip.com'
-alias caltoday="calendar -A 0 -f /usr/share/calendar/calendar.world | cut -f2"
 alias genpassword="python -c \"import random; import string; print(''.join([random.choice(string.digits + string.ascii_letters) for i in range(12)]))\""
 alias yqp='yq e "." -'
 alias ghist='history | grep -iE'
@@ -39,17 +38,6 @@ alias gll='git --no-pager log --oneline -n 5'
 alias gcm='git checkout main || git checkout master'
 alias gcb='git checkout -b'
 
-# Vagrant aliases
-alias vup='vagrant up'
-alias vssh='vagrant ssh'
-alias vpro='vagrant provision'
-alias vdown='vagrant halt'
-alias vlist='vagrant snapshot list'
-alias vsave='vagrant snapshot save'
-alias vdestroy='vagrant destroy'
-alias vrestore='vagrant snapshot restore'
-alias vstate='vagrant global-status'
-
 # Sublime
 alias subln='subl -n'
 alias sublh='subl -n .'
@@ -72,21 +60,9 @@ alias ksetns='kubectl config set-context --current --namespace'
 # Use a global alias for outputting stuff in pretty yaml
 alias -g oyq='-o yaml | yq'
 
-# flux stuff
-alias freconh='flux reconcile helmrelease --with-source'
-alias freconk='flux reconcile kustomization --with-source'
-
 # python stuff, want to default to py3
 alias python='python3'
 alias pip='pip3'
-
-function srcv(){
-  source "${HOME}/venvs/${1}/bin/activate"
-}
-alias ipython='srcv ipython; ~/venvs/ipython/bin/ipython'
-alias jupyter='srcv ipython; ~/venvs/ipython/bin/jupyter'
-
-alias src-scratch='srcv ipython'
 
 # quick docker conf
 alias dubuntu='docker run -ti --rm ubuntu bash'
@@ -106,21 +82,6 @@ alias tfclean='rm -f .terraform/{environment,terraform.tfstate}'
 
 function reminder() {
   echo -e "\n\033[31m\033[1m\t\t${@}\033[0m\n"
-}
-
-function update_repos(){
-    for CODE_DIR in ~/code/* ; do
-        if [ -d "${CODE_DIR}/.git" ]; then
-            (
-              echo "hello! ${CODE_DIR}"
-              cd "${CODE_DIR}" || exit
-              git stash save "update_repos save -- $(date)"
-              git checkout master
-              git pull
-              echo -e "*****\n"
-            )
-        fi
-    done
 }
 
 export TZ_I_CARE_ABOUT=(US/Eastern Europe/London Australia/Sydney)
@@ -154,20 +115,63 @@ function b64e(){
   echo -n "${msg}" | base64
 }
 
-function ec2(){
-	query="Name=tag:Name,Values=*${1}*"
-	aws ec2 describe-instances --filter "${query}" |  jq 'if (.Reservations | length ) > 1 or (.Reservations[0].Instances | length ) > 1 then .Reservations[].Instances[] | {"ip":.PrivateIpAddress, "id":.InstanceId, "name": .Tags | map(select(.Key=="Name").Value)[0]} else .Reservations[0].Instances[0].PrivateIpAddress end' -cr
-}
-
-function ec2ip(){
-  query="Name=private-ip-address,Values=${1}"
-  aws ec2 describe-instances --filter "${query}" |  jq 'if (.Reservations | length) > 0 then .Reservations[].Instances[]|{"name": .Tags | map(select(.Key=="Name").Value)[0], "id": .InstanceId, "type":.InstanceType, "image":.ImageId, "state": .State.Name} else "not found" end'
-}
-
-function ec2info(){
-  query="Name=tag:Name,Values=*${1}*"
-  aws ec2 describe-instances --filter "${query}" |  jq 'if (.Reservations | length) > 0 then .Reservations[].Instances[]|{"name": .Tags | map(select(.Key=="Name").Value)[0], "id": .InstanceId, "type":.InstanceType, "image":.ImageId, "state": .State.Name} else "not found" end'
-}
-
 # Unalias one of the oh-my-zsh defaults so we can use gsts
 unalias gsts
+
+function sublp() {
+  subl_path="/Users/scoook/code/__sublime"
+  name=${1:-$(basename "${PWD}")}
+
+  subl_proj="${subl_path}/${name}.sublime-project"
+
+  if [[ -e "${subl_proj}" ]];
+  then
+    subl "${subl_proj}"
+  else
+    echo "Could not find a sublime project named ${name}"
+  fi
+}
+
+
+function __ghclone() {
+  if [[ "${PWD}" != "/Users/scoook/code" ]]; then
+    echo "not in ~/code"
+    return
+  fi
+
+  org="${1}"
+  if [[ -z "${org}" ]]; then
+    echo "no org"
+    return
+  fi
+
+  repo="${2}"
+  if [[ -z "${repo}" ]]; then
+    echo "no repo"
+    return
+  fi
+
+  git clone "git@github.com:${org}/${repo}.git"
+
+  cat <<EOM >"/Users/scoook/code/__sublime/${repo}.sublime-project"
+{
+  "folders":
+  [
+    {
+      "path": "/Users/scoook/code/${repo}"
+    }
+  ]
+}
+EOM
+
+  cd "${repo}"
+  subl "/Users/scoook/code/__sublime/${repo}.sublime-project"
+}
+
+function ghlucidclone() {
+  __ghclone lucidhq "${1}"
+}
+
+function ghcintclone() {
+  __ghclone cint "${1}"
+}
