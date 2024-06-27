@@ -4,6 +4,7 @@ declare -a sync_files=( \
   "Default (OSX).sublime-keymap" \
   "Package Control.sublime-settings" \
   "Preferences.sublime-settings" \
+  "set-json.sublime-macro"
   # "*.sublime-snippet"
   # "footnote-bottom.sublime-snippet" \
   # "footnote.sublime-snippet"

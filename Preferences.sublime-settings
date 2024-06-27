@@ -7,7 +7,6 @@
 	"highlight_line": true,
 	"ignored_packages":
 	[
-		"Markdown",
 		"Vintage",
 	],
 	"rulers":
@@ -23,6 +22,10 @@
 	"trim_trailing_white_space_on_save": true,
 	"use_simple_full_screen": true,
 
+	"show_project_first": true,
+	"show_rel_path": true,
+	"show_full_path": false,
+
   "theme": "Agila Monokai.sublime-theme",
   "theme_agila_active_tab_entry_yellow": true,
   "theme_agila_compact_sidebar": true,
@@ -37,9 +40,10 @@
   "theme_agila_vertical_scrollbar_gray": true,
   "theme_agila_vertical_scrollbar_thinnest": true,
 
-  "color_scheme": "Packages/Agila Theme/Agila Monokai Extended.tmTheme",
+  "color_scheme": "Packages/Color Scheme - Default/Monokai.tmTheme",
 	/*"font_size": 16,*/
 	/*"font_size": 17,*/
 	/*"font_size": 15,*/
 	/*"font_size": 19,*/
+	"index_files": true,
 }

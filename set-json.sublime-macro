@@ -1,0 +1,12 @@
+[
+  {
+    "args": {
+      "syntax": "Packages/JSON/JSON.sublime-syntax"
+    },
+    "command": "set_file_type"
+  },
+  {
+    "args": null,
+    "command": "sublime_json_reindent"
+  }
+]

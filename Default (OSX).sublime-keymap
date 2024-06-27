@@ -1,9 +1,10 @@
 [
-  {"keys": ["super+shift+g"], "command": "show_overlay", "args":
-      {
-          "overlay": "command_palette",
-          "text":"git"
-      }
+  {
+    "keys": ["super+shift+g"], "command": "show_overlay", "args":
+    {
+        "overlay": "command_palette",
+        "text":"git"
+    }
   },
   { "keys": ["ctrl+space"], "command": "auto_complete" },
   { "keys": ["f3"], "command": "find_next" },
@@ -11,49 +12,36 @@
   { "keys": ["ctrl+;"], "command": "show_overlay", "args": {"overlay": "goto", "text": "#"} },
   { "keys": ["shift+super+0"], "command": "reset_font_size"},
 
-      // Swap bracket type
-  { "keys": ["ctrl+shift+]"],
-    "command": "swap_brackets"},
+  // Swap bracket type
+  {
+    "keys": ["ctrl+shift+]"],
+    "command": "swap_brackets"
+  },
 
   // Swap quotes (only goes boths ways in supported languages...)
-  { "keys": ["ctrl+shift+'"],
-    "command": "bh_key", "args": {"lines" : true, "plugin": {"type": ["single_quote", "double_quote", "py_single_quote", "py_double_quote"], "command": "bh_modules.swapquotes"} }},
+  {
+    "keys": ["ctrl+shift+'"],
+    "command": "bh_key",
+    "args": {"lines" : true, "plugin": {"type": ["single_quote", "double_quote", "py_single_quote", "py_double_quote"], "command": "bh_modules.swapquotes"} }
+  },
 
   // Select text between brackets
-  { "keys": ["ctrl+alt+a"],
-    "command": "bh_key", "args": {"lines" : true, "plugin": {"type": ["__all__"], "command": "bh_modules.bracketselect"} } },
+  {
+    "keys": ["ctrl+alt+a"],
+    "command": "bh_key",
+    "args": {"lines" : true, "plugin": {"type": ["__all__"], "command": "bh_modules.bracketselect"} }
+  },
 
   // Reset f5 to sort and make ctrl+f5 date panel
-  { "keys": ["f5"],
-    "command": "sort_lines" },
-  { "keys": ["ctrl+f5"],
-    "command": "insert_date_panel" },
-
-  // Select tag name of HTML/XML tag (both opening name and closing)
-  { "keys": ["ctrl+alt+t"],
-    "command": "bh_key", "args": {"plugin": {"type": ["cfml", "html", "angle"], "command": "bh_modules.tagnameselect"} } },
+  { "keys": ["f5"], "command": "sort_lines" },
+  { "keys": ["ctrl+f5"], "command": "insert_date_panel" },
 
   // Toggle high visibility mode
-  { "keys": ["alt+super+="],
-    "command": "bh_toggle_high_visibility"},
-  // REPL stuff
-  { "keys": ["ctrl+alt+super+f12"],
-    "command": "run_existing_window_command",
-    "args": {
-      "id": "repl_clojure",
-      "file": "config/Clojure/Main.sublime-menu"
-    }
-  },
+  { "keys": ["alt+super+="], "command": "bh_toggle_high_visibility"},
 
-  // Get documentation
-  { "keys": ["alt+super+d"],
-    "command": "run_on_selection_in_repl",
-    "args": {"function": "clojure.repl/doc"}
-  },
-
-  { "keys": ["shift+super+,", "b"],
-    "command": "repl_transfer_current",
-    "args": {"scope": "block", "action":"view_write"
-    }
+  {
+    "keys": ["super+k", "j", "q"],
+    "command": "run_macro_file",
+    "args": {"file": "Packages/User/set-json.sublime-macro"}
   }
 ]
