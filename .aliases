@@ -28,6 +28,7 @@ alias gds='git diff --staged'
 alias gt='git tag'
 alias ggraph='git log --graph --oneline --decorate --all'
 alias gpush='git push'
+alias gpushf='git push --force-with-lease'
 alias gamend='git commit -v --amend'
 alias gfixup='git commit --fixup'
 alias gfixlast='git commit --amend --no-edit'
@@ -80,6 +81,7 @@ alias tf14='tfenv use 0.14.11'
 alias tf1='tfenv use 1.0.10' 
 alias tfclean='rm -f .terraform/{environment,terraform.tfstate}'
 
+
 function reminder() {
   echo -e "\n\033[31m\033[1m\t\t${@}\033[0m\n"
 }
@@ -114,6 +116,8 @@ function b64e(){
 	fi
   echo -n "${msg}" | base64
 }
+
+alias awswhoami='aws sts get-caller-identity | jq'
 
 function ec2(){
   query="Name=tag:Name,Values=*${1}*"

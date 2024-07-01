@@ -14,3 +14,8 @@ export AWS_PAGER=""
 if [[ -f ~/.secrets ]]; then
   source ~/.secrets
 fi
+
+if [[ -f ~/.cint ]]; then
+  source ~/.cint
+fi
+
