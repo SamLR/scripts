@@ -77,6 +77,9 @@ else
   PUBLIC_IP="${4:-${NOT_SET}}"
 fi
 
+if [[ "${CMD}" == "" ]]; then
+  CMD=""
+fi
 
 # Exit on unbound variables from here
 set -u
@@ -107,7 +110,7 @@ aws ec2-instance-connect send-ssh-public-key \
 
 if [[ "${NO_SSH}" == "${NOT_SET}" ]];
 then
-  ssh -i "${TMP_KEY_FILE}/eic_rsa" "${USER}@${TARGET_IP}"
+  ssh -i "${TMP_KEY_FILE}/eic_rsa" "${USER}@${TARGET_IP}" "${CMD}"
 else
-  echo ssh -i "${TMP_KEY_FILE}/eic_rsa" "${USER}@${TARGET_IP}"
+  echo ssh -i "${TMP_KEY_FILE}/eic_rsa" "${USER}@${TARGET_IP}" "${CMD}"
 fi
