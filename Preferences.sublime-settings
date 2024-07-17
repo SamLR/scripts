@@ -40,7 +40,8 @@
   "theme_agila_vertical_scrollbar_gray": true,
   "theme_agila_vertical_scrollbar_thinnest": true,
 
-  "color_scheme": "Packages/Color Scheme - Default/Monokai.tmTheme",
+  // "color_scheme": "Packages/User/custom-agila-monokai.tmTheme",
+  "color_scheme": "Mariana.sublime-color-scheme",
 	/*"font_size": 16,*/
 	/*"font_size": 17,*/
 	/*"font_size": 15,*/

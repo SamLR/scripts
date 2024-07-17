@@ -42,6 +42,14 @@
   // Toggle high visibility mode
   { "keys": ["alt+super+="], "command": "bh_toggle_high_visibility"},
 
+  // Toggle markdown view
+  {
+    "keys": ["super+k", "m", "d"],
+    "command": "set_file_type",
+    "args": {"syntax": "Packages/Markdown/Markdown.sublime-syntax"}
+  },
+
+  // Run Json macro
   {
     "keys": ["super+k", "j", "q"],
     "command": "run_macro_file",
