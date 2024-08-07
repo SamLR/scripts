@@ -12,6 +12,7 @@ alias canIP='curl canhazip.com'
 alias genpassword="python -c \"import random; import string; print(''.join([random.choice(string.digits + string.ascii_letters) for i in range(12)]))\""
 alias yqp='yq e "." -'
 alias ghist='history | grep -iE'
+alias genv='env | grep -iE'
 
 # pretty grep
 alias grep="grep --colour=auto"
