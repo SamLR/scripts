@@ -13,6 +13,7 @@ alias genpassword="python -c \"import random; import string; print(''.join([rand
 alias yqp='yq e "." -'
 alias ghist='history | grep -iE'
 alias genv='env | grep -iE'
+alias gaws='cat ~/code/aws-iam-actions-list/all-actions.txt | grep -iE'
 
 # pretty grep
 alias grep="grep --colour=auto"
@@ -62,6 +63,7 @@ alias kgetcontexts='kubectl config get-contexts'
 alias ksetns='kubectl config set-context --current --namespace'
 # Use a global alias for outputting stuff in pretty yaml
 alias -g oyq='-o yaml | yq'
+alias -g dehelm=" -o json | jq .data.release | tr -d '\"' | base64 -d | base64 -d | gzip -d | jq"
 
 # python stuff, want to default to py3
 alias python='python3'
@@ -77,10 +79,7 @@ alias tfapply='terraform apply'
 alias tfvalidate='terraform validate'
 alias tfworkspace='terraform workspace select'
 alias tflsworkspace='terraform workspace list'
-alias tf12='tfenv use 0.12.24'
-alias tf13='tfenv use 0.13.7'
-alias tf14='tfenv use 0.14.11'
-alias tf1='tfenv use 1.0.10' 
+alias tf1='tfenv use 1.5.7'
 alias tfclean='rm -f .terraform/{environment,terraform.tfstate}'
 
 
