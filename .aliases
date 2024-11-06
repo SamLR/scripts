@@ -123,21 +123,25 @@ alias awswhoami='aws sts get-caller-identity | jq'
 function ec2(){
   query="Name=tag:Name,Values=*${1}*"
   aws ec2 describe-instances --filter "${query}" |  jq 'if (.Reservations | length ) > 1 or (.Reservations[0].Instances | length ) > 1 then .Reservations[].Instances[] | {"ip":.PrivateIpAddress, "id":.InstanceId, "name": .Tags | map(select(.Key=="Name").Value)[0]} else .Reservations[0].Instances[0].PrivateIpAddress end' -cr
- }
+}
 function ec2ip(){
   query="Name=private-ip-address,Values=${1}"
   aws ec2 describe-instances --filter "${query}" |  jq 'if (.Reservations | length) > 0 then .Reservations[].Instances[]|{"name": .Tags | map(select(.Key=="Name").Value)[0], "id": .InstanceId, "type":.InstanceType, "image":.ImageId, "state": .State.Name} else "not found" end'
- }
+}
 
 function ec2info(){
   query="Name=tag:Name,Values=*${1}*"
   aws ec2 describe-instances --filter "${query}" |  jq 'if (.Reservations | length) > 0 then .Reservations[].Instances[]|{"name": .Tags | map(select(.Key=="Name").Value)[0], "id": .InstanceId, "type":.InstanceType, "image":.ImageId, "state": .State.Name} else "not found" end'
- }
+}
+
+function ecr-list-tags(){
+  aws --region us-east-1 ecr list-images --repository-name "${1}" | jq '.imageIds [] | .imageTag'
+}
 
 # Unalias one of the oh-my-zsh defaults so we can use gsts
 unalias gsts
 
-function sublp() {
+function sublp(){
   subl_path="/Users/scoook/code/__sublime"
   name=${1:-$(basename "${PWD}")}
 
@@ -152,7 +156,7 @@ function sublp() {
 }
 
 
-function __ghclone() {
+function __ghclone(){
   if [[ "${PWD}" != "/Users/scoook/code" ]]; then
     echo "not in ~/code"
     return
@@ -187,10 +191,10 @@ EOM
   subl "/Users/scoook/code/__sublime/${repo}.sublime-project"
 }
 
-function ghlucidclone() {
+function ghlucidclone(){
   __ghclone lucidhq "${1}"
 }
 
-function ghcintclone() {
+function ghcintclone(){
   __ghclone cint "${1}"
 }
