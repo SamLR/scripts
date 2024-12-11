@@ -49,10 +49,20 @@
     "args": {"syntax": "Packages/Markdown/Markdown.sublime-syntax"}
   },
 
+  // Toggle markdown view
+  {
+    "keys": ["super+k", "y", "q"],
+    "command": "set_file_type",
+    "args": {"syntax": "Packages/YAML/YAML.sublime-syntax"}
+  },
+
   // Run Json macro
   {
     "keys": ["super+k", "j", "q"],
     "command": "run_macro_file",
     "args": {"file": "Packages/User/set-json.sublime-macro"}
-  }
+  },
+
+  // Show in sidebar
+  { "keys": ["super+alt+r"], "command": "reveal_in_side_bar" },
 ]
