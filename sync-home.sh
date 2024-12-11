@@ -15,6 +15,7 @@ if [ -z $1 ]; then
     $diff_cmd "${HOME}/${f}" "${PWD}/${f}"
   done
 
+  echo "diffing "${HOME}/.oh-my-zsh/custom/themes/gentoo-custom.zsh-theme" "${PWD}/gentoo-custom.zsh-theme""
   $diff_cmd "${HOME}/.oh-my-zsh/custom/themes/gentoo-custom.zsh-theme" "${PWD}/gentoo-custom.zsh-theme"
 elif [[ $1 == "--from-home" ]]; then
   echo "Copying files from ${HOME} to here"

@@ -145,6 +145,10 @@ function sublp(){
   subl_path="/Users/scoook/code/__sublime"
   name=${1:-$(basename "${PWD}")}
 
+  if [[ "$name" == "__notes" ]]; then
+    name="notes"
+  fi
+
   subl_proj="${subl_path}/${name}.sublime-project"
 
   if [[ -e "${subl_proj}" ]];
