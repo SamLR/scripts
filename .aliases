@@ -61,6 +61,7 @@ alias kgs='kubectl get svc'
 alias kuc='kubectl config use-context'
 alias kgetcontexts='kubectl config get-contexts'
 alias ksetns='kubectl config set-context --current --namespace'
+alias knetshoot='kubectl run sam-test --image nicolaka/netshoot -ti --rm'
 # Use a global alias for outputting stuff in pretty yaml
 alias -g oyq='-o yaml | yq'
 alias -g dehelm=" -o json | jq .data.release | tr -d '\"' | base64 -d | base64 -d | gzip -d | jq"
@@ -70,7 +71,7 @@ alias python='python3'
 alias pip='pip3'
 
 # quick docker conf
-alias dubuntu='docker run -ti --rm ubuntu bash'
+alias dnetshoot='docker run -ti -v --rm nicolaka/netshoot zsh'
 
 # Terraform stuff
 alias tfplan='terraform plan'
