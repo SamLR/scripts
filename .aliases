@@ -41,7 +41,7 @@ alias gpull='git pull'
 alias gll='git --no-pager log --oneline -n 5'
 alias gcm='git checkout master || git checkout main'
 alias gcb='git checkout -b'
-alias gc..='git checkout @{-1}' # checkout previous branch
+alias gc-='git checkout @{-1}' # checkout previous branch
 
 # Sublime
 alias subln='subl -n'
