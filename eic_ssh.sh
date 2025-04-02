@@ -99,7 +99,11 @@ check-set "${TARGET_AZ}" "An AZ for TARGET_IP (${TARGET_IP}) could not be found 
 # Generate a new key (eic_rsa) with no password
 TMP_KEY_FILE=$(mktemp -d)
 # Trap the exit so we can clean up the generated key
-trap '{ rm -rf "${TMP_KEY_FILE}" ; echo "cleaned" ; }' EXIT
+if [[ "${NO_SSH}" == "${NOT_SET}" ]];
+then
+  trap '{ rm -rf "${TMP_KEY_FILE}" ; echo "cleaned" ; }' EXIT
+fi
+
 ssh-keygen -f "${TMP_KEY_FILE}/eic_rsa" -t rsa -N ''
 
 aws ec2-instance-connect send-ssh-public-key \

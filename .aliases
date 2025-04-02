@@ -41,6 +41,7 @@ alias gpull='git pull'
 alias gll='git --no-pager log --oneline -n 5'
 alias gcm='git checkout master || git checkout main'
 alias gcb='git checkout -b'
+alias gc..='git checkout @{-1}' # checkout previous branch
 
 # Sublime
 alias subln='subl -n'
@@ -71,7 +72,7 @@ alias python='python3'
 alias pip='pip3'
 
 # quick docker conf
-alias dnetshoot='docker run -ti -v --rm nicolaka/netshoot zsh'
+alias dnetshoot='docker run -ti --rm nicolaka/netshoot'
 
 # Terraform stuff
 alias tfplan='terraform plan'
