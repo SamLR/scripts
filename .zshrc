@@ -58,3 +58,5 @@ setopt auto_cd
 cdpath=($HOME/code)
 
 source <(fzf --zsh)
+
+. "$HOME/.local/bin/env"
